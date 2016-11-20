@@ -53,8 +53,7 @@
           var foundItems = [];
 
           for (var i = 0; i < result.data.menu_items.length; i++) {
-            if (result.data.menu_items[i].short_name.toUpperCase().indexOf(searchTerm.toUpperCase()) > -1
-                || result.data.menu_items[i].name.toUpperCase().indexOf(searchTerm.toUpperCase()) > -1) {
+            if (result.data.menu_items[i].name.toUpperCase().indexOf(searchTerm.toUpperCase()) > -1) {
               foundItems.push(result.data.menu_items[i]);
             }
           }
