@@ -26,13 +26,13 @@
         })
 
         .state('items', {
-          url: '/items/{categoryShortName}',
+          url: '/items/:categoryShortName',
           templateUrl: 'src/data/template/item-list.template.html',
           controller: 'ItemListController as itemList',
           resolve: {
-            item: ['$stateParams', 'MenuDataService',
+            items: ['$stateParams', 'MenuDataService',
                   function ($stateParams, MenuDataService) {
-                    return MenuDataService.getItemsForCategory($stateParams.categoryShortName);
+                    return MenuDataService.getItemsForCategory($stateParams.categoryShortName)
                   }]
             }
         })
