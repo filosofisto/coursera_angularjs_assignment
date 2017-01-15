@@ -4,18 +4,17 @@
   angular.module('public')
     .controller('SignupController', SignupController);
 
-  SignUpController.$inject = ['UserService', 'MenuService'];
+  SignupController.$inject = ['UserService', 'MenuService'];
   function SignupController(UserService, MenuService) {
     var $ctrl = this;
     $ctrl.registrationSuccess = false;
     $ctrl.favoriteDishFound = false;
 
-    $ctrl.signUp = function(event) {
-      console.log("Sign up started... ");
+    $ctrl.authenticate = function(event) {
       event.preventDefault();
       var user = {
-            firstName: $ctrl.firstName,
-            lastName: $ctrl.lastName,
+            firstname: $ctrl.firstname,
+            lastname: $ctrl.lastname,
             email: $ctrl.email,
             phone: $ctrl.phone,
             favoriteDish: $ctrl.favoriteDish

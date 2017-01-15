@@ -7,6 +7,15 @@
   }
 </style>
 <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div ng-if="signupCtrl.registrationSuccess">
+        Authentication successfull!!!<br>
+        Welcome {{ signupCtrl.lastname }}, {{ signupCtrl.firstname }}
+      </div>
+    </div>
+  </div>
+
   <h2>Sign up</h2>
 
   <form action="#" name="signupForm" novalidate>
@@ -83,19 +92,10 @@
         <p>
           <button class="btn btn-primary pull-right"
             ng-disabled="signupForm.$invalid"
-            ng-click="signupCtrl.signUp($event)">
+            ng-click="signupCtrl.authenticate($event)">
             Sign up
           </button>
         </p>
-      </div>
-
-      <div class="col-md-6">
-        <div class="panel panel-success" ng-if="signupCtrl.registrationSuccess">
-          <div class="panel-heading">Success!!</div>
-          <div class="panel-body" style="color: green">
-            <p>Sign up succeded!</p>
-          </div>
-        </div>
       </div>
     </div>
   </form>
