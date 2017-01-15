@@ -1,103 +1,102 @@
+<style>
+  .ng-touched.ng-invalid {
+    background-color:  pink;
+  }
+  .ng-touched.ng-valid {
+    background-color: lightgreen;
+  }
+</style>
 <div class="container">
-  <h2>Sign Up</h2>
-  <p>Enter with asked informations</p>
+  <h2>Sign up</h2>
 
-  <form name='regForm' novalidate>
+  <form action="#" name="signupForm" novalidate>
     <div class="row">
-      <div class="col-lg-4">
-				<div class="form-group">
-					<label for="firstname">First name <span class="text-danger">*</span></label>
-          <input type="text" name="firstname" placeholder="First name" id="firstname"
-            ng-model="signupCtrl.user.firstname"
-            required
-            class="form-control input-lg">
-          <span
-            ng-if="regForm.firstname.$error.required && regForm.firstname.$touched">
+      <div class="col-md-6">
+        <p>Name and E-mail address are mandatory.</p>
+
+        <p>
+          <label for="firstname">First name:</label>
+          <input type="text" name="firstname" id="firstname"
+            ng-model="signupCtrl.firstname"
+            class="form-control"
+            required>
+          <span ng-if="signupForm.firstName.$error.required && signupForm.firstName.$touched"
+            style="color: white; background-color: red">
             First name is required
           </span>
-				</div>
-			</div>
-    </div>
+        </p>
 
-    <div class="row">
-      <div class="col-lg-4">
-				<div class="form-group">
-					<label for="lastname">Last name <span class="text-danger">*</span></label>
-          <input type="text" name="lastname" placeholder="Last name" id="lastname"
-            ng-model="signupCtrl.user.lastname"
-            required
-            class="form-control input-lg">
-          <span
-            ng-if="regForm.lastname.$error.required && regForm.lastname.$touched">
+        <p>
+          <label for="lastname">Last name:</label>
+          <input type="text" name="lastname" id="lastname"
+            ng-model="signupCtrl.lastname"
+            class="form-control"
+            required>
+          <span ng-if="signupForm.lastname.$error.required && signupForm.lastname.$touched"
+            style="color: white; background-color: red">
             Last name is required
           </span>
-				</div>
-			</div>
-    </div>
+        </p>
 
-    <div class="row">
-      <div class="col-lg-4">
-				<div class="form-group">
-					<label for="email">Email <span class="text-danger">*</span></label>
-          <input type="email" name="email" placeholder="Email" id="email"
-            ng-model="signupCtrl.user.email"
-            required
-            class="form-control input-lg">
-          <span ng-if="regForm.email.$invalid && regForm.email.$touched">
-            Must be a valid email address: handle@domain format
+        <p>
+          <label for="email">E-mail:</label>
+          <input type="email" name="email" id="email"
+            ng-model="signupCtrl.email"
+            class="form-control"
+            required>
+          <span ng-if="(signupForm.email.$invalid || signupForm.email.$error.required) && signupForm.email.$touched"
+            style="color: white; background-color: red">
+            E-mail address is invalid
           </span>
-        </div>
-      </div/>
-    </div>
+        </p>
 
-    <div class="row">
-      <div class="col-lg-4">
-				<div class="form-group">
-					<label for="address">Adress <span class="text-danger">*</span></label>
-          <input type="text" name="address" placeholder="Address" id="address"
-            ng-model="signupCtrl.user.address"
-            required
-            class="form-control input-lg">
-          <span
-            ng-if="regForm.address.$error.required && regForm.address.$touched">
-            Last name is required
-          </span>
-				</div>
-			</div>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-4">
-				<div class="form-group">
-					<label for="phone">Phone number <span class="text-danger">*</span></label>
-          <input type="text" name="phone" placeholder="Phone ###-###-####" id="phone"
-            ng-model="signupCtrl.user.phone"
+        <p>
+          <label for="phone">Phone number:</label>
+          <input type="phone" name="phone" id="phone" placeholder="###-###-####"
+            ng-model="signupCtrl.phone"
             pattern="(\d{3})-(\d{3})-(\d{4})"
-            class="form-control input-lg">
-            <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
-              Phone must be in the format ###-###-####.
-            </span>
-				</div>
-			</div>
-    </div>
+            class="form-control">
+          <span ng-if="signupForm.phone.$invalid && signupForm.phone.$touched"
+            style="color: white; background-color: red">
+            Phone is invalid, format: 999-999-9999
+          </span>
+        </p>
 
-    <div class="row">
-      <div class="col-lg-4">
-				<div class="form-group">
-					<label for="menunumber">Last name <span class="text-danger">*</span></label>
-          <input type="text" name="menunumber" placeholder="Menu number" id="menunumber"
-            ng-model="signupCtrl.user.menu_number"
-            class="form-control input-lg">
-				</div>
-			</div>
-    </div>
+        <p>
+          <label for="favoriteDish">Favorite dish:</label>
+          <input type="text" name="favoriteDish" id="favoriteDish"
+            placeholder="Enter short name of favorite dish"
+            ng-model="signupCtrl.favoriteDish"
+            minlength="2"
+            ng-maxlength="4"
+            class="form-control">
+          <span ng-if="(signupForm.favoriteDish.$error.minlength || signupForm.favoriteDish.$error.minlength) && signupForm.favoriteDish.$touched"
+            style="color: white; background-color: red">
+            Short name of dish is 1-2 letters and 1-2 numbers
+          </span>
+          <span ng-if="signupCtrl.registrationSuccess && !signupCtrl.favoriteDishFound"
+            style="color:white; background-color: red">
+            No such menu number exists!
+          </span>
+        </p>
 
-    <div class="row">
-      <button
-        ng-disabled="regForm.$invalid"
-        ng-click="signupCtrl.authenticate()"
-        class="btn btn-primary">Authenticate
-      </button>
+        <p>
+          <button class="btn btn-primary pull-right"
+            ng-disabled="signupForm.$invalid"
+            ng-click="signupCtrl.signUp($event)">
+            Sign up
+          </button>
+        </p>
+      </div>
+
+      <div class="col-md-6">
+        <div class="panel panel-success" ng-if="signupCtrl.registrationSuccess">
+          <div class="panel-heading">Success!!</div>
+          <div class="panel-body" style="color: green">
+            <p>Sign up succeded!</p>
+          </div>
+        </div>
+      </div>
     </div>
   </form>
 </div>

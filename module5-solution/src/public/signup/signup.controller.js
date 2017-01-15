@@ -1,26 +1,38 @@
 (function () {
-"use strict";
+  "use strict";
 
-angular.module('public')
-.controller('SignupController', SignupController);
+  angular.module('public')
+    .controller('SignupController', SignupController);
 
-SignupController.$inject = ['MenuService'];
-function SignupController(MenuService) {
-  var $ctrl = this;
+  SignUpController.$inject = ['UserService', 'MenuService'];
+  function SignupController(UserService, MenuService) {
+    var $ctrl = this;
+    $ctrl.registrationSuccess = false;
+    $ctrl.favoriteDishFound = false;
 
-  //TODO: Remove after tests
-  $ctrl.user = {
-    'firstname': 'Eduardo';
-    'lastname': 'Silva';
-    'email': 'filosofisto@hotmail.com';
-    'menu_number': 'A1';
-    'phone': '111-111-1111';
-  };
+    $ctrl.signUp = function(event) {
+      console.log("Sign up started... ");
+      event.preventDefault();
+      var user = {
+            firstName: $ctrl.firstName,
+            lastName: $ctrl.lastName,
+            email: $ctrl.email,
+            phone: $ctrl.phone,
+            favoriteDish: $ctrl.favoriteDish
+      };
 
-  $ctrl.authenticate = function () {
-      /*menu_item = MenuService.getMenuItem('A1');
-      console.log("menu_item: ", menu_item);*/
-      alert('Authentication !!!');
-  };
-}
+      MenuService.getMenuItems($ctrl.favoriteDish)
+        .then(function(data) {
+          user.favoriteMenuItem = data;
+
+          UserService.setUser(user);
+          $ctrl.favoriteDishFound = true;
+          $ctrl.registrationSuccess = true;
+        }, function(err) {
+          UserService.setUser(user);
+          $ctrl.favoriteDishFound = false;
+          $ctrl.registrationSuccess = true;
+        });
+    };
+  }
 })();
