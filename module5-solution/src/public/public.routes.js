@@ -53,8 +53,8 @@ function routeConfig ($stateProvider) {
       controller: 'MyInfoController',
       controllerAs: 'myInfoCtrl',
       resolve: {
-        user: ['UsersService', function (UsersService) {
-          return UsersService.getUser();
+        user: ['UserService', function (UserService) {
+          return UserService.getUser();
         }]
       }
     });;

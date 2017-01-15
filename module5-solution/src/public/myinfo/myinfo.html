@@ -1,10 +1,10 @@
 <div class="container">
-  <h2>My information</h2>
+  <h2>About Me</h2>
   <div ng-if="myInfoCtrl.signedUp">
     <div class="row">
       <div class="col-md-6">
-        <p>First name: {{ myInfoCtrl.firstName }}</p>
-        <p>Last name: {{ myInfoCtrl.lastName }}</p>
+        <p>First name: {{ myInfoCtrl.firstname }}</p>
+        <p>Last name: {{ myInfoCtrl.lastname }}</p>
         <p>E-mail address: {{ myInfoCtrl.email }}</p>
         <p>Phone number: {{ myInfoCtrl.phone }}</p>
       </div>
@@ -16,14 +16,13 @@
           <p>{{ myInfoCtrl.favoriteMenuItem.description }}</p>
         </div>
         <div ng-show="!myInfoCtrl.favoriteMenuItem">
-          <p>(You entered an invalid short name for your favorite dish when signing up.)</p>
+          <p>Yos choice was not found, sorry. Try set it in SignUp again.</p>
         </div>
       </div>
     </div>
   </div>
 
   <div ng-if="!myInfoCtrl.signedUp">
-    <p>Not Signed Up Yet.</p>
-    <p><a ui-sref="public.signUp" class="btn btn-warning">Sign up Now!</a></p>
+    <p>You must sign up</p>
   </div>
 </div>
