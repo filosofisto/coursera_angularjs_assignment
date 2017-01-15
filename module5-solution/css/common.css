@@ -18,3 +18,10 @@
 .ui-view-placeholder {
     margin-top: 60px;
 }
+
+.ng-touched.ng-invalid {
+  background-color:  pink;
+}
+.ng-touched.ng-valid {
+  background-color: lightgreen;
+}
